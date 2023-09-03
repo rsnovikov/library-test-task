@@ -1,20 +1,28 @@
 import cors from "cors";
 import { config as dotenvConfig } from "dotenv";
+
 import express from "express";
-import { db } from "./db";
+import { db } from "./db.js";
+import errorHandleMiddleware from "./middlewares/ErrorHandleMiddleware.js";
+import routes from "./routes/routes.js";
 
 const bootstrap = async () => {
   dotenvConfig();
 
   const app = express();
   app.use(cors());
+  app.use(express.json());
+  app.use("/api", routes);
+  app.use(errorHandleMiddleware);
 
   const PORT = process.env.PORT ?? 8080;
 
   try {
-    db.connect();
+    // check first db connection
+    const connection = await db.connect();
+    await connection.done();
 
-    app.listen(8080, () => {
+    app.listen(PORT, () => {
       console.log(`Server successfully has been started on port: ${PORT}`);
     });
   } catch (error) {
