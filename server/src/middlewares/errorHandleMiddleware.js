@@ -1,5 +1,6 @@
 import BadRequest from "../exceptions/BadRequest.js";
 
+// eslint-disable-next-line no-unused-vars
 const errorHandleMiddleware = (err, _req, res, _next) => {
   if (err instanceof BadRequest) {
     const { message, errors } = err;

@@ -1,6 +1,5 @@
 import cors from "cors";
 import { config as dotenvConfig } from "dotenv";
-
 import express from "express";
 import { db } from "./db.js";
 import errorHandleMiddleware from "./middlewares/ErrorHandleMiddleware.js";
@@ -10,7 +9,7 @@ const bootstrap = async () => {
   dotenvConfig();
 
   const app = express();
-  app.use(cors());
+  app.use(cors({ origin: "*" }));
   app.use(express.json());
   app.use("/api", routes);
   app.use(errorHandleMiddleware);

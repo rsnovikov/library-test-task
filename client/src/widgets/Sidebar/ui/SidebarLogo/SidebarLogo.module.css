@@ -1,0 +1,11 @@
+.sidebarLogo {
+  @apply inline-flex items-center pl-2.5;
+}
+
+.sidebarLogoIcon {
+  @apply h-7 w-7 mr-1 text-white;
+}
+
+.sidebarLogoText {
+  @apply self-center text-xl font-semibold whitespace-nowrap text-white;
+}

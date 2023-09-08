@@ -1,5 +1,6 @@
 import handleValidationErrors from "../lib/validation/handleValidation.js";
 import categoriesModel from "../models/categories.model.js";
+
 const categoriesController = {
   async create(req, res, next) {
     try {
@@ -19,7 +20,13 @@ const categoriesController = {
       const { limit, page } = req.query;
 
       const categories = await categoriesModel.getAll(Number(limit), Number(page));
-      res.json(categories);
+      const { count } = await categoriesModel.count();
+
+      res
+        .header("Access-Control-Allow-Headers", "X-Total-Count")
+        .header("Access-Control-Expose-Headers", "X-Total-Count")
+        .header("X-Total-Count", count)
+        .json(categories);
     } catch (e) {
       next(e);
     }

@@ -1,0 +1,19 @@
+.modalContainer {
+  @apply justify-center items-center fixed top-0 left-0 right-0 bottom-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full bg-black bg-opacity-25 flex;
+}
+
+.modalOverlay {
+  @apply flex justify-center items-center fixed top-0 left-0 right-0 bottom-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-full;
+}
+
+.modalBody {
+  @apply rounded-lg border-2 md:my-20 my-0 bg-white relative w-full max-w-2xl flex items-center justify-center z-50;
+}
+
+.modalContent {
+  @apply p-7 w-full;
+}
+
+.modalCloseBtn {
+  @apply absolute top-1.5 right-1.5;
+}

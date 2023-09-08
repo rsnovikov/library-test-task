@@ -35,17 +35,43 @@ const columnSet = new pgp.helpers.ColumnSet(
 
 const booksModel = {
   create(book) {
-    const query = pgp.helpers.insert(book, columnSet) + " RETURNING *";
+    const {
+      category: { id: categoryId },
+      ...rest
+    } = book;
+    const formattedBook = { ...rest, categoryId };
+
+    const query = pgp.helpers.insert(formattedBook, columnSet) + " RETURNING *";
     return db.one(query);
   },
-  getAll() {
-    const query = "SELECT * FROM $(table:name)";
-    return db.any(query, { table });
+
+  async getAll() {
+    const query = `SELECT $(booksTable:name).id, title, author, publisher, year, rating,
+    $(booksTable:name).created_at as "createdAt", category_id as "categoryId",
+    $(categoriesTable:name).name as "categoryName" FROM $(booksTable:name) LEFT JOIN
+    $(categoriesTable:name) ON $(booksTable:name).category_id = $(categoriesTable:name).id`;
+
+    const books = await db.any(query, { booksTable: table, categoriesTable: "categories" });
+
+    const formattedBooks = books.map(({ categoryId, categoryName, ...rest }) => ({
+      ...rest,
+      category: { name: categoryName, id: categoryId },
+    }));
+
+    return formattedBooks;
   },
+
   update(id, book) {
-    const query = pgp.helpers.update(book, columnSet) + " WHERE id=$(id) RETURNING *";
+    const {
+      category: { id: categoryId },
+      ...rest
+    } = book;
+    const formattedBook = { ...rest, categoryId };
+
+    const query = pgp.helpers.update(formattedBook, columnSet) + " WHERE id=$(id) RETURNING *";
     return db.one(query, { id });
   },
+
   remove(id) {
     const query = "DELETE FROM $(table:name) WHERE id=$(id) RETURNING id";
     return db.one(query, { table, id });

@@ -1,12 +1,12 @@
 import handleValidationErrors from "../lib/validation/handleValidation.js";
 import booksModel from "../models/books.model.js";
+
 const booksController = {
   async create(req, res, next) {
     try {
       handleValidationErrors(req);
 
       const book = await booksModel.create(req.body);
-      console.log(book);
       res.json(book);
     } catch (e) {
       next(e);

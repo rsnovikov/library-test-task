@@ -1,0 +1,7 @@
+.categoriesGridWrapper {
+  @apply h-[260px] w-full;
+}
+
+.categoriesGrid {
+  @apply w-full;
+}

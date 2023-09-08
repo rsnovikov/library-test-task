@@ -21,8 +21,9 @@ const categoriesModel = {
     const query = pgp.helpers.insert(category, columnSet) + " RETURNING *";
     return db.one(query);
   },
-  getAll(limit, page) {
-    let query = "SELECT * FROM $(table:name)";
+
+  async getAll(limit, page) {
+    let query = 'SELECT id, name, description, created_at as "createdAt" FROM $(table:name)';
 
     if (limit > 0) {
       query += pgp.as.format(" LIMIT $(limit)", { limit });
@@ -34,13 +35,20 @@ const categoriesModel = {
 
     return db.any(query, { table });
   },
+
   update(id, category) {
     const query = pgp.helpers.update(category, columnSet) + " WHERE id=$(id) RETURNING *";
     return db.one(query, { id });
   },
+
   remove(id) {
     const query = "DELETE FROM $(table:name) WHERE id=$(id) RETURNING id";
     return db.one(query, { table, id });
+  },
+
+  count() {
+    const query = "SELECT count(*) FROM $(table:name)";
+    return db.one(query, { table });
   },
 };
 

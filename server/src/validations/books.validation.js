@@ -13,7 +13,7 @@ const booksValidation = [
     .isFloat({ min: 1, max: 5 })
     .withMessage("должен быть числом от 1 до 5")
     .customSanitizer((value) => Number(value)),
-  body("categoryId")
+  body("category.id")
     .isInt({ min: 1 })
     .withMessage("Должен быть целым числом больше или равным 1")
     .customSanitizer((value) => Number(value)),
