@@ -2,7 +2,7 @@ import cors from "cors";
 import { config as dotenvConfig } from "dotenv";
 import express from "express";
 import { db } from "./db.js";
-import errorHandleMiddleware from "./middlewares/ErrorHandleMiddleware.js";
+import errorHandleMiddleware from "./middlewares/errorHandleMiddleware.js";
 import routes from "./routes/routes.js";
 
 const bootstrap = async () => {
