@@ -1,0 +1,7 @@
+.books {
+  @apply h-full;
+}
+
+.booksTitle {
+  @apply text-center text-2xl font-medium mb-3;
+}

@@ -1,0 +1,7 @@
+.sidebarClose {
+  @apply lg:hidden block;
+}
+
+.sidebarCloseIcon {
+  @apply text-white w-6 h-6;
+}

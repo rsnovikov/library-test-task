@@ -1,0 +1,7 @@
+.categories {
+  @apply h-full;
+}
+
+.categoriesTitle {
+  @apply text-center text-2xl font-medium mb-3;
+}

@@ -1,0 +1,11 @@
+.sidebarNavItem {
+  @apply flex items-center p-2 rounded-lg text-white hover:bg-gray-700;
+}
+
+.sidebarNavItemIcon {
+  @apply w-5 h-5 transition duration-75 mr-1;
+}
+
+.sidebarNavItemTitle {
+  @apply ml-3;
+}

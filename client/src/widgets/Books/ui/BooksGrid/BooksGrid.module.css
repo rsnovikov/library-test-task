@@ -1,0 +1,11 @@
+.booksGridBtnList {
+  @apply mb-2 flex;
+}
+
+.booksGridBtn:not(:last-child) {
+  @apply mr-2;
+}
+
+.booksGridWrapper {
+  @apply w-full h-[500px];
+}

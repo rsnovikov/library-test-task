@@ -1,6 +1,9 @@
+import { config as dotenvConfig } from "dotenv";
 import pgPromise from "pg-promise";
 
-const pgp = pgPromise();
+dotenvConfig();
+
+export const pgp = pgPromise({ capSQL: true });
 
 export const db = pgp({
   user: process.env.POSTGRES_USER,
