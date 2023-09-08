@@ -10,7 +10,7 @@ const AboutPage = () => {
         </p>
         <section className="mb-4">
           <h2 className="font-medium text-lg mb-2">Server</h2>
-          <p className="space-2 text-gray-800">
+          <p className="my-2 text-gray-800">
             Для взаимодействия с БД решил использовать pg-promise (впервые с ним работал), так как
             таблицы нужно создавать при помощи sql запросов и часть запросов писать самостоятельно,
             поэтому не sequelize, хотя обычно всегда использую либо его, либо typeOrm. Запросы решил
@@ -22,7 +22,19 @@ const AboutPage = () => {
 
         <section>
           <h2 className="font-medium text-lg mb-2">Client</h2>
-          <p className="space-2 text-gray-800">
+          <p className="my-2 text-gray-800">
+            Приложение реализовано в соответствии с методологией{" "}
+            <a
+              href="https://feature-sliced.design/"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+            >
+              Feature-Sliced Design
+            </a>
+            .
+          </p>
+          <p className="my-2 text-gray-800">
             Для запросов и хранения данных использовал Redux toolkit, до этого не работал с ag-grid
             и не думал, что у него свое собственное состояние. После добавления RTK и реализации все
             запросов прочитал внимательно документацию ag-grid, но redux toolkit решил оставить,
