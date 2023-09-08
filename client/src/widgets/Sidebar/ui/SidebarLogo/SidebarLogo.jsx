@@ -1,6 +1,6 @@
 import IconBxsBookHeart from "@/shared/ui/icons/IconBxsBookHeart.jsx";
 import { Link } from "react-router-dom";
-import css from "./sidebarLogo.module.css";
+import css from "./SidebarLogo.module.css";
 
 const SidebarLogo = () => {
   return (
